@@ -50,7 +50,7 @@ const Hero = () => {
         sortByUsername={sortByUsername} 
         onSearch={handleSearch} // Pass search function to Navbar
       />
-      <div className="mx-auto px-4 py-8">
+      <div className="mx-auto px-8 py-8">
         <div className="grid-container">
           {sortedData.map(user => (
             <Card key={user.id} user={user} />
