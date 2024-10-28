@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Navbar = () => {
+const Navbar = ({ sortByName, sortByUsername }) => {
   return (
-    <div className='shadow-md bg-white'>
+    <div className='shadow-md bg-white w-full'> {/* Ensure full width */}
       <div className='flex justify-between px-5 md:px-10 py-5'>
-        <div className='text-lg md:text-xl font-semibold '>Users</div>
+        <div className='text-lg md:text-xl font-semibold'>Users</div>
         <div className='flex items-center gap-3'>
           <div className='border-2 border-gray-400 flex items-center gap-3 px-2 py-1 rounded-md w-[250px] sm:w-[300px] md:w-[400px]'>
             <input 
@@ -20,6 +20,19 @@ const Navbar = () => {
               />
             </div>
           </div>
+          {/* Sort buttons added to Navbar */}
+          <button 
+            onClick={sortByName} 
+            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-800"
+          >
+            Sort by Name
+          </button>
+          <button 
+            onClick={sortByUsername} 
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Sort by Username
+          </button>
         </div>
       </div>
     </div>
