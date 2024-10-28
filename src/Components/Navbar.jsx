@@ -10,7 +10,7 @@ const Navbar = ({ sortByName, sortByUsername, onSearch }) => {
       <div className='flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-5'>
         <div className='text-lg md:text-xl font-semibold'>Users</div>
         <div className='flex  md:flex-row items-center gap-3 md:gap-5 mt-3 md:mt-0'>
-          <div className='border-2 border-gray-400 flex items-center gap-3 px-2 py-1 rounded-md w-full sm:w-[600px] md:w-[400px]'>
+          <div className='border-2 border-gray-400 flex items-center gap-3 px-2 py-1 rounded-md w-full sm:w-[300px] md:w-[400px]'>
             <input 
               type="text"
               className='text-sm py-[12px]  w-full md:py-[2px] outline-none' 
