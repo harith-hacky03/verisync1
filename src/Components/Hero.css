@@ -1,0 +1,18 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Responsive columns */
+    grid-auto-rows: auto; /* Fixed height for rows */
+    gap: 60px; /* Gap between grid items */
+    padding: 10px;
+}
+
+.grid-container .card {
+    background-color: #4CAF50; /* Green background for cards */
+    color: white; /* White text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px; /* Add padding inside cards */
+}
