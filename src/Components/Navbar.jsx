@@ -1,16 +1,21 @@
 import React from 'react';
 
-const Navbar = ({ sortByName, sortByUsername }) => {
+const Navbar = ({ sortByName, sortByUsername, onSearch }) => {
+  const handleChange = (event) => {
+    onSearch(event.target.value); // Step 3: Call the search function on input change
+  };
+
   return (
     <div className='shadow-md bg-white w-full'> 
       <div className='flex flex-col md:flex-row justify-between items-center px-5 md:px-10 py-5'>
         <div className='text-lg md:text-xl font-semibold'>Users</div>
-        <div className='flex flex-col md:flex-row items-center gap-3 md:gap-5 mt-3 md:mt-0'>
-          {/* Increased width for smaller screens */}
+        <div className='flex  md:flex-row items-center gap-3 md:gap-5 mt-3 md:mt-0'>
           <div className='border-2 border-gray-400 flex items-center gap-3 px-2 py-1 rounded-md w-full sm:w-[600px] md:w-[400px]'>
             <input 
-              className='text-sm w-full py-[2px] outline-none' 
+              type="text"
+              className='text-sm py-[12px]  w-full md:py-[2px] outline-none' 
               placeholder='Search by username or name' 
+              onChange={handleChange}
             />
             <div className='px-1'>
               <img 
@@ -21,7 +26,6 @@ const Navbar = ({ sortByName, sortByUsername }) => {
               />
             </div>
           </div>
-          {/* Sort buttons added to Navbar */}
           <button 
             onClick={sortByName} 
             className="px-3 py-2 bg-blue-600 text-sm text-white rounded hover:bg-blue-800"
