@@ -35,10 +35,10 @@ const Hero = () => {
   return (
     <div className="rounded-lg overflow-hidden shadow-md"> {/* Add rounded corners and shadow */}
       <Navbar sortByName={sortByName} sortByUsername={sortByUsername} />
-      <div className="mx-2 px-4 py-8">
+      <div className="mx-auto px-4 py-8">
         <div className="grid-container"> {/* Responsive grid definition */}
           {sortedData.map(user => (
-            <Card key={user.id} user={user} />
+            <Card  key={user.id} user={user} />
           ))}
         </div>
       </div>
