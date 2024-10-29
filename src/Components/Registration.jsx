@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import init,{ get_pass_hash } from '../pkg/zk_wasm.js';
+import init, { get_pass_hash } from '../pkg/zk_wasm.js';
+import axios from 'axios';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  useEffect(()=>{
-    const load = async() => {
-      await init()
-    }
-    load()
-  },[])
+  useEffect(() => {
+    const load = async () => {
+      await init();
+    };
+    load();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -22,11 +23,28 @@ function RegistrationForm() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(get_pass_hash(password))
-    console.log('Submitted Data:', { username, password });
-    setSubmitted(true);
+    const hashedPassword = get_pass_hash(password);
+    console.log('Hashed Password:', hashedPassword[0]);
+    
+    // Prepare the data to be sent
+    const userData = {
+      username: username,
+      password: hashedPassword[0], // Use the hashed password
+    };
+
+    try {
+      const response = await axios.post('http://localhost:3001/users', userData);
+      console.log('Response from server:', response.data);
+      setSubmitted(true);
+    } catch (error) {
+      if (error.response) {
+        console.error('Error submitting form:', error.response.data);
+      } else {
+        console.error('Error submitting form:', error.message);
+      }
+    }
   };
 
   return (
