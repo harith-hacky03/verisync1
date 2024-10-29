@@ -22,7 +22,7 @@ This project is a responsive web application built with React that allows users 
 ### Installation
 To run this project locally, follow these steps:
 1. Clone the repository:  
-   `git clone https://github.com/harith-hacky03/verisync1.git`  
+   `git clone https://github.com/harith-hacky03/verisync1.git -b q1`  
    `cd verisync1`
 
 2. Install dependencies:  
@@ -59,8 +59,8 @@ This project is a robust authentication system utilizing WebAssembly for enhance
 ### Installation
 To run this project locally, follow these steps:
 1. Clone the repository:  
-   `git clone <repository-url>`  
-   `cd <repository-directory>`
+   `git clone https://github.com/harith-hacky03/verisync1.git -b q2`  
+   `cd verisync1`
 
 2. Install frontend dependencies:  
    `cd frontend`  
