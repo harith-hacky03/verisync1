@@ -1,4 +1,4 @@
-// src/components/LoginForm.js
+
 import React, { useEffect, useState } from 'react';
 import init, { generate_proof,verify_proof } from '../pkg/zk_wasm.js';
 import axios from 'axios';
@@ -29,27 +29,33 @@ function LoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const proof = await generate_proof(username, password);
-
+  
     const userData = {
-        username: username,
-        proof: proof 
+      username: username,
+      proof: proof 
     };
-
+  
     try {
-        const response = await axios.post('http://localhost:3001/loginUser', userData);
-        if( response.data.code == -1 ){
-            setError("User Doesn't Exist")
-        }
-        else{
-            const isVerified = verify_proof(proof, response.data, username);
-            setSubmitted(true);
-            setError('');
-        }
-    } catch (error) {
+      const response = await axios.post('http://localhost:3001/loginUser', userData);
+      if (response.data.code === -1) {
+        setError("User Doesn't Exist");
         setSubmitted(false);
-        setError('Login failed. Please check your credentials.');
+      } else {
+        const isVerified = verify_proof(proof, response.data, username);
+        if (isVerified) {
+          setSubmitted(true);
+          setError('');
+        } else {
+          setSubmitted(false);
+          setError('Proof verification failed. Invalid credentials.');
+        }
+      }
+    } catch (error) {
+      setSubmitted(false);
+      setError('Login failed. Please check your credentials.');
     }
-};
+  };
+  
 
 
   return (
