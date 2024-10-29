@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true,
+    "worker": true  // Enables 'self' in environments like Web Workers
+  },
+  "globals": {
+    "FinalizationRegistry": "readonly",
+    "__wbg_test_invoke": "readonly",
+    "__wbg_test_output_writeln": "readonly",
+    "globalThis": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-undef": "error",
+    "no-restricted-globals": [
+      "error",
+      // Remove 'self' from here if you don't want to restrict it
+      "event"  // You can keep other restricted globals as needed
+    ]
+  }
+}
