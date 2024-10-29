@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+# Projects Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains two projects: a responsive React app for user data management and a WASM (WebAssembly) assembly-based authentication system. Both projects are hosted online for live demonstration.
 
-## Available Scripts
+## Project 1: User Data Management App
 
-In the project directory, you can run:
+### Live Demo
+- [User Data Management App](https://verisync1-aoxy.vercel.app/)
 
-### `npm start`
+### Description
+This project is a responsive web application built with React that allows users to fetch, display, and sort user data from an external API. The app features a user-friendly interface with sorting functionalities to manage the displayed data efficiently.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Features
+- Fetch and display user data from an API.
+- Responsive design for optimal viewing on various devices.
+- Sort functionality to organize user data by different attributes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Technologies Used
+- **Frontend:** React
+- **API:** [API Name/Provider] (if applicable)
 
-### `npm test`
+### Installation
+To run this project locally, follow these steps:
+1. Clone the repository:  
+   `git clone <repository-url>`  
+   `cd <repository-directory>`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies:  
+   `npm install`
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Start the development server:  
+   `npm start`
 
 ### Deployment
+The frontend is deployed on Vercel, providing continuous integration and automatic deployments on every push to the main branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Project 2: WASM Assembly-Based Authentication System
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Live Demo
+- [Authentication System](https://verisync1.vercel.app/)
+
+### Description
+This project is a robust authentication system utilizing WebAssembly for enhanced performance. The frontend is built with React, while the backend is developed using Express.js and MongoDB. The system provides secure user authentication features and is designed for high efficiency.
+
+### Features
+- WebAssembly-based authentication for fast and secure user login.
+- React frontend for a seamless user experience.
+- Express backend for handling API requests and user data management.
+- MongoDB for storing user data securely.
+
+### Technologies Used
+- **Frontend:** React
+- **Backend:** Express.js
+- **Database:** MongoDB
+- **WebAssembly:** Used for authentication logic
+
+### Installation
+To run this project locally, follow these steps:
+1. Clone the repository:  
+   `git clone <repository-url>`  
+   `cd <repository-directory>`
+
+2. Install frontend dependencies:  
+   `cd frontend`  
+   `npm install`
+
+3. Install backend dependencies:  
+   `cd backend`  
+   `npm install`
+
+4. Start the backend server:  
+   `cd backend`  
+   `npm start`
+
+5. Start the frontend development server:  
+   `cd frontend`  
+   `npm start`
+
+### Deployment
+The frontend is hosted on Vercel, and the backend is deployed on Render.com, ensuring high availability and performance.
+
+---
+
+## Contributing
+Contributions are welcome! If you have suggestions or improvements, please feel free to open an issue or submit a pull request.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
