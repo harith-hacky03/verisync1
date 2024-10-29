@@ -28,7 +28,7 @@ function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const hashedPassword = get_pass_hash(password);
-    console.log('Hashed Password:', hashedPassword);
+    //console.log('Hashed Password:', hashedPassword);
     
     // Prepare the data to be sent
     const userData = {
@@ -38,7 +38,7 @@ function RegistrationForm() {
 
     try {
       const response = await axios.post('http://localhost:3001/users', userData);
-      console.log('Response from server:', response.data);
+      //console.log('Response from server:', response.data);
       setSubmitted(true);
       setErrorMessage(''); // Clear any previous error messages
     } catch (error) {
