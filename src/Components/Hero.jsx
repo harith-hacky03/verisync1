@@ -7,14 +7,14 @@ import './Hero.css';
 const Hero = () => {
   const [data, setData] = useState([]);
   const [sortedData, setSortedData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState(''); // Step 1: State for search input
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
         setData(response.data);
-        setSortedData(response.data); 
+        setSortedData(response.data);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
@@ -33,22 +33,21 @@ const Hero = () => {
     setSortedData(sorted);
   };
 
-  // Step 2: Function to filter data based on search input
   const handleSearch = (term) => {
     setSearchTerm(term);
     const filteredData = data.filter(user =>
       user.name.toLowerCase().includes(term.toLowerCase()) ||
       user.username.toLowerCase().includes(term.toLowerCase())
     );
-    setSortedData(filteredData); // Update displayed data
+    setSortedData(filteredData);
   };
 
   return (
-    <div className="rounded-lg overflow-hidden shadow-md">
+    <div className="hero-gradient">
       <Navbar 
         sortByName={sortByName} 
         sortByUsername={sortByUsername} 
-        onSearch={handleSearch} // Pass search function to Navbar
+        onSearch={handleSearch}
       />
       <div className="mx-auto px-8 py-8">
         <div className="grid-container">
