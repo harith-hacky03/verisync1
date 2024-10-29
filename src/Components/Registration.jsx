@@ -1,56 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import init,{ get_pass_hash } from '../pkg/zk_wasm.js';
 
 function RegistrationForm() {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(()=>{
+    const load = async() => {
+      await init()
+    }
+    load()
+  },[])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name === 'username') {
+      setUsername(value);
+    } else if (name === 'password') {
+      setPassword(value);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Typically, you’d send formData to a backend here
-    console.log('Submitted Data:', formData);
+    console.log(get_pass_hash(password))
+    console.log('Submitted Data:', { username, password });
     setSubmitted(true);
   };
 
   return (
-    <div className="registration-form">
-      <h2>Register</h2>
-      {submitted ? (
-        <p>Registration successful!</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={formData.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <button type="submit">Register</button>
-        </form>
-      )}
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-purple-600">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full mx-4">
+        <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Register</h2>
+        
+        {submitted ? (
+          <p className="text-green-600 text-center font-semibold">Registration successful!</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="username" className="block text-gray-600 font-medium">Username</label>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                value={username}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Enter your username"
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="block text-gray-600 font-medium">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                placeholder="Enter your password"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition duration-200"
+            >
+              Register
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }
