@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import init, { generate_proof,verify_proof } from '../pkg/zk_wasm.js';
+import init, { generate_proof,verify_proof } from '../pkg/zk_wasm';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
