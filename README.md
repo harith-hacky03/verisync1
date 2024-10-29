@@ -17,13 +17,13 @@ This project is a responsive web application built with React that allows users 
 
 ### Technologies Used
 - **Frontend:** React
-- **API:** [API Name/Provider] (if applicable)
+- **API:** jsonplaceholder
 
 ### Installation
 To run this project locally, follow these steps:
 1. Clone the repository:  
-   `git clone <repository-url>`  
-   `cd <repository-directory>`
+   `git clone https://github.com/harith-hacky03/verisync1.git`  
+   `cd verisync1`
 
 2. Install dependencies:  
    `npm install`
