@@ -36,7 +36,7 @@ function LoginForm() {
     };
   
     try {
-      const response = await axios.post('http://localhost:3001/loginUser', userData);
+      const response = await axios.post('https://backend-ashen-gamma.vercel.app/loginUser', userData);
       if (response.data.code === -1) {
         setError("User Doesn't Exist");
         setSubmitted(false);
