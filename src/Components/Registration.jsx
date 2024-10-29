@@ -1,48 +1,38 @@
+// RegistrationForm.js
 import React, { useEffect, useState } from 'react';
-import init, { get_pass_hash } from '../pkg/zk_wasm.js';
-import axios from 'axios';
+import { initializeWasm, hashPassword } from './wasmUtils';
+import { registerUser } from './apiService';
 import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    const load = async () => {
-      await init();
-    };
-    load();
+    initializeWasm();
   }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'username') {
-      setUsername(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
+    name === 'username' ? setUsername(value) : setPassword(value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const hashedPassword = get_pass_hash(password);
-    //console.log('Hashed Password:', hashedPassword);
-    
-    // Prepare the data to be sent
+    const hashedPassword = hashPassword(password);
+
     const userData = {
-      username: username,
-      password: hashedPassword, // Use the hashed password
+      username,
+      password: hashedPassword,
     };
 
     try {
-      const response = await axios.post('http://localhost:3001/users', userData);
-      //console.log('Response from server:', response.data);
+      await registerUser(userData);
       setSubmitted(true);
-      setErrorMessage(''); // Clear any previous error messages
+      setErrorMessage('');
     } catch (error) {
-      // Handle specific error messages based on the server response
       if (error.response) {
         if (error.response.status === 409) {
           setErrorMessage('Username already exists. Please choose another one.');
@@ -51,10 +41,8 @@ function RegistrationForm() {
         } else {
           setErrorMessage('An error occurred. Please try again later.');
         }
-        console.error('Error submitting form:', error.response.data);
       } else {
         setErrorMessage('Network error. Please try again later.');
-        console.error('Error submitting form:', error.message);
       }
     }
   };
@@ -68,7 +56,7 @@ function RegistrationForm() {
           <div>
             <p className="text-green-600 text-center font-semibold">Registration successful!</p>
             <div className='mt-2'>
-              <Link to="/login" className='text-blue-600' >Login?</Link>
+              <Link to="/login" className='text-blue-600'>Login?</Link>
             </div>
           </div>
         ) : (
@@ -100,7 +88,7 @@ function RegistrationForm() {
               />
             </div>
             {errorMessage && (
-              <div className="text-red-600 text-center">{errorMessage}</div> // Display error message
+              <div className="text-red-600 text-center">{errorMessage}</div>
             )}
             <button
               type="submit"
@@ -109,7 +97,7 @@ function RegistrationForm() {
               Register
             </button>
             <div className='mt-2'>
-              <Link to="/login" className='text-blue-600' >Login?</Link>
+              <Link to="/login" className='text-blue-600'>Login?</Link>
             </div>
           </form>
         )}
