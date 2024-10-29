@@ -7,6 +7,14 @@
     padding: 10px;
 }
 
+/* Hero.css */
+.hero-gradient {
+    background: linear-gradient(135deg, #fffaf3, #ffe0d2); 
+    min-height: 100vh; /* Ensures full screen coverage */
+  }
+  
+  
+
 /* Center cards in smaller screens */
 @media (max-width: 768px) {
     .grid-container {
