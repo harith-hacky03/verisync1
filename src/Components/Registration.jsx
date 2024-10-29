@@ -1,4 +1,3 @@
-// RegistrationForm.js
 import React, { useEffect, useState } from 'react';
 import { initializeWasm, hashPassword } from './wasmUtils';
 import { registerUser } from './apiService';
@@ -6,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('')
+  const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -21,8 +20,19 @@ function RegistrationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const hashedPassword = hashPassword(password);
 
+    // Validate username and password length
+    if (username.length < 4) {
+      setErrorMessage("Username must be at least 4 characters long.");
+      return;
+    }
+
+    if (password.length < 8) {
+      setErrorMessage("Password must be at least 8 characters long.");
+      return;
+    }
+
+    const hashedPassword = hashPassword(password);
     const userData = {
       username,
       password: hashedPassword,
