@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('')
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
