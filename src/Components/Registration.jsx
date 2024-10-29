@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import init, { get_pass_hash } from '../pkg/zk_wasm.js';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function RegistrationForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(''); // State for error messages
 
   useEffect(() => {
     const load = async () => {
@@ -26,22 +28,32 @@ function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const hashedPassword = get_pass_hash(password);
-    console.log('Hashed Password:', hashedPassword[0]);
+    console.log('Hashed Password:', hashedPassword);
     
     // Prepare the data to be sent
     const userData = {
       username: username,
-      password: hashedPassword[0], // Use the hashed password
+      password: hashedPassword, // Use the hashed password
     };
 
     try {
       const response = await axios.post('http://localhost:3001/users', userData);
       console.log('Response from server:', response.data);
       setSubmitted(true);
+      setErrorMessage(''); // Clear any previous error messages
     } catch (error) {
+      // Handle specific error messages based on the server response
       if (error.response) {
+        if (error.response.status === 409) {
+          setErrorMessage('Username already exists. Please choose another one.');
+        } else if (error.response.status === 400) {
+          setErrorMessage('Invalid input. Please check your details.');
+        } else {
+          setErrorMessage('An error occurred. Please try again later.');
+        }
         console.error('Error submitting form:', error.response.data);
       } else {
+        setErrorMessage('Network error. Please try again later.');
         console.error('Error submitting form:', error.message);
       }
     }
@@ -53,7 +65,12 @@ function RegistrationForm() {
         <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">Register</h2>
         
         {submitted ? (
-          <p className="text-green-600 text-center font-semibold">Registration successful!</p>
+          <div>
+            <p className="text-green-600 text-center font-semibold">Registration successful!</p>
+            <div className='mt-2'>
+              <Link to="/login" className='text-blue-600' >Login?</Link>
+            </div>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
@@ -82,12 +99,18 @@ function RegistrationForm() {
                 placeholder="Enter your password"
               />
             </div>
+            {errorMessage && (
+              <div className="text-red-600 text-center">{errorMessage}</div> // Display error message
+            )}
             <button
               type="submit"
               className="w-full py-2 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-lg transition duration-200"
             >
               Register
             </button>
+            <div className='mt-2'>
+              <Link to="/login" className='text-blue-600' >Login?</Link>
+            </div>
           </form>
         )}
       </div>
